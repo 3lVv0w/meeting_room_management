@@ -1,0 +1,21 @@
+<div style="text-align: center;">
+  <h1><%= @user.name %></h1>
+</div>
+<div style="text-align: center;">
+  My Meeting Reservation
+</div>
+<div style="text-align: center;">
+<% @user.reservations.group_by(&:date).each_pair do |date, reservation| %>
+  <h4>Date: <%= date %></h4>
+  <% reservation.each do |res| %>
+    <div style="padding: 10px;">
+      <div>
+        <%= res.from.strftime('%H:%M') %> - <%= res.to.strftime('%H:%M') %>
+      </div>
+      <div>
+        <%= link_to 'Cancle', cancle_meeting_room_reservation_path(res.meeting_room_id, res.id) %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>

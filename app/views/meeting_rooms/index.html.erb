@@ -1,0 +1,17 @@
+<div style="width: 100%;">
+<% @meeting_rooms.each do |room| %>
+  <div style="background-color: yellow;">
+    <div style="text-align: center;">
+      <h1><%= room.name %></h1>
+    </div>
+    <div style="text-align: center;">
+      <h3>Current Status: <%= room&.status || 'Vacant' %></h3>
+    </div>
+    <div style="text-align: center; margin: 5vh;">
+      <span>
+        <%= link_to 'View', meeting_room_path(room) %>
+      </span>
+    </div>
+  </div>
+<% end %>
+</div>

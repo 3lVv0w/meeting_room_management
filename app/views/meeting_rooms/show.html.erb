@@ -1,0 +1,18 @@
+<div style="text-align: center; margin: 2.5vh;">
+  <h1><%= @meeting_room.name %></h1>
+</div>
+<div style="text-align: center;">
+<% @meeting_room.reservations.where(taken: false).group_by(&:date).each_pair do |date, reservation| %>
+  <h4>Date: <%= date %></h4>
+  <% reservation.each do |res| %>
+    <div style="padding: 10px;">
+      <div>
+        <%= res.from.strftime('%H:%M') %> - <%= res.to.strftime('%H:%M') %>
+      </div>
+      <div>
+        <%= link_to 'Take Resevation', edit_meeting_room_reservation_path(@meeting_room.id, res) %></h1>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
